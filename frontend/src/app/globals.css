@@ -100,3 +100,33 @@ body {
     scroll-behavior: smooth;
   }
 }
+
+/* Marquee animation */
+@keyframes marquee {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+[data-marquee-track] {
+  animation: marquee var(--marquee-speed, 30s) var(--marquee-direction, normal) linear infinite;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  will-change: transform;
+}
+
+[data-marquee][data-pause-on-hover]:hover [data-marquee-track] {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-marquee-track] {
+    animation: none !important;
+    overflow-x: auto;
+  }
+}
