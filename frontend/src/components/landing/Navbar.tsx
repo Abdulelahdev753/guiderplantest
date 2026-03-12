@@ -3,6 +3,8 @@
 import { useState } from "react";
 import Image from "next/image";
 
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
+
 type Lang = "en" | "ar";
 
 interface NavbarProps {
@@ -31,7 +33,7 @@ export default function Navbar({ lang, onToggleLang }: NavbarProps) {
       <div className="flex items-center justify-between px-5 sm:px-6 py-3 rounded-full bg-white/[0.04] backdrop-blur-2xl border border-white/[0.08] shadow-[0_0_30px_rgba(0,0,0,0.3)]">
         {/* Brand */}
         <a href="#" className="flex items-center gap-2.5 shrink-0">
-          <Image src="/images/logo.svg" alt="GuiderPlan logo" width={32} height={32} className="w-8 h-8" />
+          <Image src={`${basePath}/images/logo.svg`} alt="GuiderPlan logo" width={32} height={32} className="w-8 h-8" />
           <span className="text-white font-semibold text-lg tracking-tight">
             GuiderPlan
           </span>

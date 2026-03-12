@@ -3,6 +3,8 @@
 import type { Lang } from "@/types/lang";
 import Image from "next/image";
 
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
+
 interface Props {
   lang: Lang;
 }
@@ -31,7 +33,7 @@ export default function Footer({ lang }: Props) {
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 mb-10">
           <a href="#" className="flex items-center gap-2.5">
             <Image
-              src="/images/logo.svg"
+              src={`${basePath}/images/logo.svg`}
               alt="GuiderPlan logo"
               width={28}
               height={28}

@@ -12,6 +12,8 @@ interface TrustedByProps {
   lang: Lang;
 }
 
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
+
 const heading = {
   en: "Trusted by industry leaders",
   ar: "موثوق من قادة الصناعة",
@@ -23,37 +25,37 @@ const brands: SlidingLogoMarqueeItem[] = [
   {
     id: "booking",
     content: (
-      <Image src="/images/booking-logo.svg" alt="Booking.com" width={165} height={32} className={imgClass} />
+      <Image src={`${basePath}/images/booking-logo.svg`} alt="Booking.com" width={165} height={32} className={imgClass} />
     ),
   },
   {
     id: "airbnb",
     content: (
-      <Image src="/images/Airbnb.svg" alt="Airbnb" width={165} height={32} className={imgClass} />
+      <Image src={`${basePath}/images/Airbnb.svg`} alt="Airbnb" width={165} height={32} className={imgClass} />
     ),
   },
   {
     id: "tripadvisor",
     content: (
-      <Image src="/images/tripadvisor.svg" alt="TripAdvisor" width={165} height={32} className={imgClass} />
+      <Image src={`${basePath}/images/tripadvisor.svg`} alt="TripAdvisor" width={165} height={32} className={imgClass} />
     ),
   },
   {
     id: "getyourguide",
     content: (
-      <Image src="/images/getyourguide-svgrepo-com.svg" alt="GetYourGuide" width={165} height={32} className={imgClass} />
+      <Image src={`${basePath}/images/getyourguide-svgrepo-com.svg`} alt="GetYourGuide" width={165} height={32} className={imgClass} />
     ),
   },
   {
     id: "streampay",
     content: (
-      <Image src="/images/streampay.svg" alt="StreamPay" width={165} height={32} className={imgClass} />
+      <Image src={`${basePath}/images/streampay.svg`} alt="StreamPay" width={165} height={32} className={imgClass} />
     ),
   },
   {
     id: "hotelscom",
     content: (
-      <Image src="/images/hotelsdotcom-svgrepo-com.svg" alt="Hotels.com" width={165} height={32} className={imgClass} />
+      <Image src={`${basePath}/images/hotelsdotcom-svgrepo-com.svg`} alt="Hotels.com" width={165} height={32} className={imgClass} />
     ),
   },
 ];

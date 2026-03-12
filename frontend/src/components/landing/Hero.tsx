@@ -31,6 +31,8 @@ const content = {
   },
 } as const;
 
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
+
 export default function Hero({ lang }: HeroProps) {
   const t = content[lang];
 
@@ -38,7 +40,7 @@ export default function Hero({ lang }: HeroProps) {
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Background Image */}
       <Image
-        src="/images/background.png"
+        src={`${basePath}/images/background.png`}
         alt=""
         fill
         priority
