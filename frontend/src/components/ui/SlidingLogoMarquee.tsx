@@ -82,8 +82,7 @@ export function SlidingLogoMarquee({
       className={cn(
         "sliding-marquee-item text-foreground",
         "grid place-items-center cursor-pointer transition-transform duration-200 ease-in-out",
-        "hover:scale-[1.05] focus:scale-[1.05] focus:outline-none focus:ring-2 focus:ring-primary",
-        "backdrop-blur-sm"
+        "hover:scale-[1.05] focus:scale-[1.05] focus:outline-none focus:ring-2 focus:ring-primary"
       )}
       onClick={() => handleItemClick(item)}
       role="button"
