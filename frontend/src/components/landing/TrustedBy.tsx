@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import {
   SlidingLogoMarquee,
   type SlidingLogoMarqueeItem,
@@ -16,77 +17,43 @@ const heading = {
   ar: "موثوق من قادة الصناعة",
 };
 
+const imgClass = "h-6 w-[120px] sm:h-8 sm:w-[165px] object-contain grayscale brightness-75 invert";
+
 const brands: SlidingLogoMarqueeItem[] = [
   {
     id: "booking",
     content: (
-      <img
-        src="/images/booking-logo.svg"
-        alt="Booking.com"
-        loading="eager"
-        decoding="sync"
-        className="h-6 w-[120px] sm:h-8 sm:w-[165px] object-contain grayscale brightness-75 invert"
-      />
+      <Image src="/images/booking-logo.svg" alt="Booking.com" width={165} height={32} className={imgClass} />
     ),
   },
   {
     id: "airbnb",
     content: (
-      <img
-        src="/images/Airbnb.svg"
-        alt="Airbnb"
-        loading="eager"
-        decoding="sync"
-        className="h-6 w-[120px] sm:h-8 sm:w-[165px] object-contain grayscale brightness-75 invert"
-      />
+      <Image src="/images/Airbnb.svg" alt="Airbnb" width={165} height={32} className={imgClass} />
     ),
   },
   {
     id: "tripadvisor",
     content: (
-      <img
-        src="/images/tripadvisor.svg"
-        alt="TripAdvisor"
-        loading="eager"
-        decoding="sync"
-        className="h-6 w-[120px] sm:h-8 sm:w-[165px] object-contain grayscale brightness-75 invert"
-      />
+      <Image src="/images/tripadvisor.svg" alt="TripAdvisor" width={165} height={32} className={imgClass} />
     ),
   },
   {
     id: "getyourguide",
     content: (
-      <img
-        src="/images/getyourguide-svgrepo-com.svg"
-        alt="GetYourGuide"
-        loading="eager"
-        decoding="sync"
-        className="h-6 w-[120px] sm:h-8 sm:w-[165px] object-contain grayscale brightness-75 invert"
-      />
+      <Image src="/images/getyourguide-svgrepo-com.svg" alt="GetYourGuide" width={165} height={32} className={imgClass} />
     ),
   },
   {
     id: "streampay",
     content: (
-      <img
-        src="/images/streampay.svg"
-        alt="StreamPay"
-        loading="eager"
-        decoding="sync"
-        className="h-6 w-[120px] sm:h-8 sm:w-[165px] object-contain grayscale brightness-75 invert"
-      />
+      <Image src="/images/streampay.svg" alt="StreamPay" width={165} height={32} className={imgClass} />
     ),
   },
   {
     id: "hotelscom",
     content: (
-      <img
-        src="/images/hotelsdotcom-svgrepo-com.svg"
-        alt="Hotels.com"
-        loading="eager"
-        decoding="sync"
-        className="h-6 w-[120px] sm:h-8 sm:w-[165px] object-contain grayscale brightness-75 invert"
-      />
+      <Image src="/images/hotelsdotcom-svgrepo-com.svg" alt="Hotels.com" width={165} height={32} className={imgClass} />
     ),
   },
 ];
