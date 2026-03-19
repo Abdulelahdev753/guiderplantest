@@ -7,11 +7,13 @@ const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
 
 interface Props {
   lang: Lang;
+  onHomePage?: boolean;
 }
 
 const navLinks = [
   { en: "Products", ar: "المنتجات", href: "#products" },
   { en: "Use Cases", ar: "حالات الاستخدام", href: "#use-cases" },
+  { en: "Travel Agencies", ar: "وكالات السفر", href: `${basePath}/travel-agencies` },
   { en: "About Us", ar: "من نحن", href: "#about" },
 ];
 
@@ -25,13 +27,13 @@ const copyright = {
   ar: "\u00a9 2026 GuiderPlan. جميع الحقوق محفوظة.",
 };
 
-export default function Footer({ lang }: Props) {
+export default function Footer({ lang, onHomePage = true }: Props) {
   return (
     <footer className="relative bg-white/[0.02] border-t border-white/[0.06]">
       <div className="max-w-6xl mx-auto px-6 py-12">
         {/* Top row: Logo + Nav links */}
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 mb-10">
-          <a href="#" className="flex items-center gap-2.5">
+          <a href={onHomePage ? "#" : `${basePath}/`} className="flex items-center gap-2.5">
             <Image
               src={`${basePath}/images/logo.svg`}
               alt="GuiderPlan logo"
@@ -45,15 +47,20 @@ export default function Footer({ lang }: Props) {
           </a>
 
           <div className="flex items-center gap-1">
-            {navLinks.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                className="px-3.5 py-1.5 text-[13px] text-white/40 hover:text-white/80 transition-colors duration-200 rounded-full hover:bg-white/[0.05]"
-              >
-                {link[lang]}
-              </a>
-            ))}
+            {navLinks.map((link) => {
+              const href = link.href.startsWith("#") && !onHomePage
+                ? `${basePath}/${link.href}`
+                : link.href;
+              return (
+                <a
+                  key={link.href}
+                  href={href}
+                  className="px-3.5 py-1.5 text-[13px] text-white/40 hover:text-white/80 transition-colors duration-200 rounded-full hover:bg-white/[0.05]"
+                >
+                  {link[lang]}
+                </a>
+              );
+            })}
           </div>
         </div>
 

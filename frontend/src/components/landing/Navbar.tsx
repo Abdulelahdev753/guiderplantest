@@ -10,29 +10,32 @@ type Lang = "en" | "ar";
 interface NavbarProps {
   lang: Lang;
   onToggleLang: () => void;
+  onHomePage?: boolean;
 }
 
 const navLinks = {
   en: [
     { label: "Products", href: "#products" },
     { label: "Use Cases", href: "#use-cases" },
+    { label: "Travel Agencies", href: `${basePath}/travel-agencies` },
     { label: "About Us", href: "#about" },
   ],
   ar: [
     { label: "المنتجات", href: "#products" },
     { label: "حالات الاستخدام", href: "#use-cases" },
+    { label: "وكالات السفر", href: `${basePath}/travel-agencies` },
     { label: "من نحن", href: "#about" },
   ],
 };
 
-export default function Navbar({ lang, onToggleLang }: NavbarProps) {
+export default function Navbar({ lang, onToggleLang, onHomePage = true }: NavbarProps) {
   const [mobileOpen, setMobileOpen] = useState(false);
 
   return (
     <nav className="fixed top-5 left-1/2 -translate-x-1/2 z-50 w-full max-w-[1100px] px-4">
       <div className="flex items-center justify-between px-5 sm:px-6 py-3 rounded-full bg-white/[0.04] backdrop-blur-2xl border border-white/[0.08] shadow-[0_0_30px_rgba(0,0,0,0.3)]">
         {/* Brand */}
-        <a href="#" className="flex items-center gap-2.5 shrink-0">
+        <a href={onHomePage ? "#" : `${basePath}/`} className="flex items-center gap-2.5 shrink-0">
           <Image src={`${basePath}/images/logo.svg`} alt="GuiderPlan logo" width={32} height={32} className="w-8 h-8" />
           <span className="text-white font-semibold text-lg tracking-tight">
             GuiderPlan
@@ -41,15 +44,20 @@ export default function Navbar({ lang, onToggleLang }: NavbarProps) {
 
         {/* Center Navigation — desktop */}
         <div className="hidden md:flex items-center gap-0.5">
-          {navLinks[lang].map((link) => (
-            <a
-              key={link.href}
-              href={link.href}
-              className="px-4 py-2 text-[13px] text-white/50 hover:text-white/90 transition-colors duration-200 rounded-full hover:bg-white/[0.06]"
-            >
-              {link.label}
-            </a>
-          ))}
+          {navLinks[lang].map((link) => {
+            const href = link.href.startsWith("#") && !onHomePage
+              ? `${basePath}/${link.href}`
+              : link.href;
+            return (
+              <a
+                key={link.href}
+                href={href}
+                className="px-4 py-2 text-[13px] text-white/50 hover:text-white/90 transition-colors duration-200 rounded-full hover:bg-white/[0.06]"
+              >
+                {link.label}
+              </a>
+            );
+          })}
         </div>
 
         {/* Right Side */}
@@ -96,16 +104,21 @@ export default function Navbar({ lang, onToggleLang }: NavbarProps) {
         }`}
       >
         <div className="rounded-2xl bg-white/[0.04] backdrop-blur-2xl border border-white/[0.08] shadow-[0_0_30px_rgba(0,0,0,0.3)] px-5 py-4 flex flex-col gap-1">
-          {navLinks[lang].map((link) => (
-            <a
-              key={link.href}
-              href={link.href}
-              onClick={() => setMobileOpen(false)}
-              className="px-4 py-2.5 text-[14px] text-white/55 hover:text-white/90 transition-colors duration-200 rounded-xl hover:bg-white/[0.06]"
-            >
-              {link.label}
-            </a>
-          ))}
+          {navLinks[lang].map((link) => {
+            const href = link.href.startsWith("#") && !onHomePage
+              ? `${basePath}/${link.href}`
+              : link.href;
+            return (
+              <a
+                key={link.href}
+                href={href}
+                onClick={() => setMobileOpen(false)}
+                className="px-4 py-2.5 text-[14px] text-white/55 hover:text-white/90 transition-colors duration-200 rounded-xl hover:bg-white/[0.06]"
+              >
+                {link.label}
+              </a>
+            );
+          })}
         </div>
       </div>
     </nav>

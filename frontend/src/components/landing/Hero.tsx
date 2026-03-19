@@ -17,7 +17,7 @@ const content = {
     subtext:
       "High-quality, curated PDF guides built for travelers\u2014clear routes, maps, must-do spots, and time-saving plans.",
     primaryCta: "Browse Guides",
-    secondaryCta: "How it works",
+    secondaryCta: "Contact with Travel Agencies",
   },
   ar: {
     announcement: "\u0623\u062f\u0644\u0629 \u0633\u0641\u0631 \u0645\u0648\u062b\u0648\u0642\u0629",
@@ -27,7 +27,7 @@ const content = {
     subtext:
       "\u0623\u062f\u0644\u0629 \u0633\u0641\u0631 \u0639\u0627\u0644\u064a\u0629 \u0627\u0644\u062c\u0648\u062f\u0629 \u0645\u0635\u0645\u0645\u0629 \u0644\u0644\u0645\u0633\u0627\u0641\u0631\u064a\u0646 \u2014 \u0645\u0633\u0627\u0631\u0627\u062a \u0648\u0627\u0636\u062d\u0629\u060c \u062e\u0631\u0627\u0626\u0637\u060c \u0623\u0647\u0645 \u0627\u0644\u0623\u0645\u0627\u0643\u0646\u060c \u0648\u062e\u0637\u0637 \u062a\u0648\u0641\u0631 \u0648\u0642\u062a\u0643.",
     primaryCta: "\u062a\u0635\u0641\u062d \u0627\u0644\u0623\u062f\u0644\u0629",
-    secondaryCta: "\u0643\u064a\u0641 \u062a\u0639\u0645\u0644 \u0627\u0644\u0645\u0646\u0635\u0629",
+    secondaryCta: "تواصل مع وكالات السفر",
   },
 } as const;
 
@@ -101,7 +101,7 @@ export default function Hero({ lang }: HeroProps) {
             {t.primaryCta}
           </a>
           <a
-            href="#"
+            href={`${basePath}/travel-agencies`}
             className="w-full sm:w-auto inline-flex items-center justify-center px-8 py-3.5 text-sm font-medium text-white/75 hover:text-white rounded-full border border-white/[0.1] hover:border-white/[0.22] hover:bg-white/[0.04] active:scale-[0.98] transition-all duration-200"
           >
             {t.secondaryCta}
