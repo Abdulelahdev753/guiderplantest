@@ -187,7 +187,7 @@ export default function TravelAgencyCard({ agency, lang }: TravelAgencyCardProps
               <form
                 onSubmit={handleSubmit}
                 className="space-y-4"
-                dir={isAr ? "rtl" : "ltr"}
+                dir="ltr"
               >
                 {/* Full name */}
                 <div>

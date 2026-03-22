@@ -203,7 +203,7 @@ export default function ProductsSectionA({ lang }: Props) {
           <DialogHeader>
             <DialogTitle
               className={`text-xl font-bold ${
-                lang === "ar" ? "font-[family-name:var(--font-cairo)] text-right" : ""
+                lang === "ar" ? "font-[family-name:var(--font-cairo)]" : ""
               }`}
             >
               {selectedProductData && (
@@ -215,13 +215,13 @@ export default function ProductsSectionA({ lang }: Props) {
               {formLabels.title[lang]}
             </DialogTitle>
             <DialogDescription
-              className={`text-white/50 ${lang === "ar" ? "text-right" : ""}`}
+              className="text-white/50"
             >
               {formLabels.description[lang]}
             </DialogDescription>
           </DialogHeader>
 
-          <form onSubmit={handleSubmit} className="space-y-4 mt-2" dir={lang === "ar" ? "rtl" : "ltr"}>
+          <form onSubmit={handleSubmit} className="space-y-4 mt-2">
             <div>
               <label
                 className={`block text-sm text-white/70 mb-1.5 ${
