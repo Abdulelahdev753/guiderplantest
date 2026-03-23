@@ -10,8 +10,8 @@ export const aboutContent = {
     ar: "نؤمن أن كل رحلة تستحق خطة حقيقية.",
   },
   narrative: {
-    en: "GuiderPlan was built by travelers who got tired of scattered blog posts, outdated forums, and generic top-10 lists. We create focused, beautifully designed PDF guides with clear day-by-day routes, curated stops, and direct Google Maps links — so you spend less time planning and more time exploring.",
-    ar: "أُنشئت GuiderPlan على يد مسافرين سئموا من المقالات المتناثرة والمنتديات القديمة وقوائم العشرة الأفضل المكررة. نصمم أدلة PDF مركّزة وجميلة بمسارات يومية واضحة ومحطات مختارة وروابط خرائط Google المباشرة — لتقضي وقتاً أقل في التخطيط ووقتاً أكثر في الاستكشاف.",
+    en: "At GuiderPlan, we offer ready-made, carefully curated digital travel guides that bring together the most important stops, daily routes, and direct links all in one place. We also act as a bridge between you and the right travel agencies for your needs, by making it easy to connect with service providers. Because we know that travelers seek clarity and trust above all else, we designed an experience that helps you make decisions with ease, and gives you a more organized, comfortable, and worry-free journey.",
+    ar: "في GuiderPlan نقدّم أدلة سفر رقمية جاهزة ومختارة بعناية، تضم أهم المحطات، والمسارات اليومية، والروابط المباشرة في مكان واحد، كما نعمل كحلقة وصل بينك وبين وكالات السفر المناسبة لاحتياجك، من خلال تسهيل ربطك بالجهات المقدمة للخدمة. لأننا نعرف أن العميل يبحث عن الوضوح والثقة قبل أي شيء، صممنا تجربة تساعدك على اتخاذ قرارك بسهولة، وتمنحك رحلة أكثر ترتيبًا وراحة واطمئنانًا.",
   },
 };
 
