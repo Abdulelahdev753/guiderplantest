@@ -27,6 +27,11 @@ const copyright = {
   ar: "\u00a9 2026 GuiderPlan. جميع الحقوق محفوظة.",
 };
 
+const commercialReg = {
+  en: "CR: 7053618372",
+  ar: "السجل التجاري: ‭7053618372‬",
+};
+
 export default function Footer({ lang, onHomePage = true }: Props) {
   return (
     <footer className="relative bg-white/[0.02] border-t border-white/[0.06]">
@@ -141,15 +146,38 @@ export default function Footer({ lang, onHomePage = true }: Props) {
           </div>
         </div>
 
-        {/* Bottom row: Copyright */}
-        <div className="border-t border-white/[0.04] pt-6">
+        {/* Bottom row: Copyright + Commercial Registration */}
+        <div className="border-t border-white/[0.04] pt-6 flex flex-col gap-4">
           <p
+            dir={lang === "ar" ? "rtl" : undefined}
             className={`text-xs text-white/20 ${
               lang === "ar" ? "font-[family-name:var(--font-cairo)] text-end" : ""
             }`}
           >
             {copyright[lang]}
           </p>
+
+          <div
+            dir={lang === "ar" ? "rtl" : undefined}
+            className={`flex items-center gap-2.5 ${
+              lang === "ar" ? "justify-start" : ""
+            }`}
+          >
+            <Image
+              src={`${basePath}/images/MOC_Logo.svg`}
+              alt="Ministry of Commerce"
+              width={20}
+              height={20}
+              className="w-7 h-7 opacity-25"
+            />
+            <span
+              className={`text-xs text-white/20 tracking-wide ${
+                lang === "ar" ? "font-[family-name:var(--font-cairo)]" : ""
+              }`}
+            >
+              {commercialReg[lang]}
+            </span>
+          </div>
         </div>
       </div>
     </footer>
