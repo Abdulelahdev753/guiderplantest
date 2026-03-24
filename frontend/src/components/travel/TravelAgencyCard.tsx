@@ -197,6 +197,7 @@ export default function TravelAgencyCard({ agency, lang }: TravelAgencyCardProps
                   <input
                     type="text"
                     required
+                    dir={isAr ? "rtl" : undefined}
                     value={name}
                     onChange={(e) => setName(e.target.value)}
                     placeholder={labels.namePlaceholder[lang]}
@@ -250,6 +251,7 @@ export default function TravelAgencyCard({ agency, lang }: TravelAgencyCardProps
                   <textarea
                     value={details}
                     onChange={(e) => setDetails(e.target.value)}
+                    dir={isAr ? "rtl" : undefined}
                     rows={3}
                     placeholder={labels.detailsPlaceholder[lang]}
                     className="w-full rounded-lg bg-white/[0.06] border border-white/[0.1] px-4 py-2.5 text-white placeholder:text-white/30 focus:outline-none focus:border-orange-500/50 transition-colors resize-none"

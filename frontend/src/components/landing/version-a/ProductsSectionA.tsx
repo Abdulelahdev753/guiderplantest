@@ -233,6 +233,7 @@ export default function ProductsSectionA({ lang }: Props) {
               <input
                 type="text"
                 required
+                dir={lang === "ar" ? "rtl" : undefined}
                 value={clientName}
                 onChange={(e) => setClientName(e.target.value)}
                 placeholder={formLabels.namePlaceholder[lang]}
