@@ -11,21 +11,21 @@ interface HeroProps {
 const content = {
   en: {
     announcement: "Trusted travel PDF guides",
-    announcementCta: "Read more \u2192",
+    announcementCta: "Carefully designed",
     headline1: "Travel Smarter",
-    headline2: "with Trusted PDF Guides",
+    headline2: "with Professional PDF Guides, All the Details",
     subtext:
-      "High-quality, curated PDF guides built for travelers\u2014clear routes, maps, must-do spots, and time-saving plans.",
+      "And we connect you with trusted travel agencies starting from 1000 SAR per person.",
     primaryCta: "Browse Guides",
     secondaryCta: "Contact with Travel Agencies",
   },
   ar: {
     announcement: "\u0623\u062f\u0644\u0629 \u0633\u0641\u0631 \u0645\u0648\u062b\u0648\u0642\u0629",
-    announcementCta: "\u0627\u0642\u0631\u0623 \u0627\u0644\u0645\u0632\u064a\u062f \u2192",
-    headline1: "\u0633\u0627\u0641\u0631 \u0628\u0630\u0643\u0627\u0621",
-    headline2: "\u0645\u0639 \u0623\u062f\u0644\u0629 PDF \u0645\u0648\u062b\u0648\u0642\u0629",
+    announcementCta: "مصممة بعناية",
+    headline1: "سافر بذكاء",
+    headline2: " مع أدلة PDF احترافية بكل التفاصيل",
     subtext:
-      "\u0623\u062f\u0644\u0629 \u0633\u0641\u0631 \u0639\u0627\u0644\u064a\u0629 \u0627\u0644\u062c\u0648\u062f\u0629 \u0645\u0635\u0645\u0645\u0629 \u0644\u0644\u0645\u0633\u0627\u0641\u0631\u064a\u0646 \u2014 \u0645\u0633\u0627\u0631\u0627\u062a \u0648\u0627\u0636\u062d\u0629\u060c \u062e\u0631\u0627\u0626\u0637\u060c \u0623\u0647\u0645 \u0627\u0644\u0623\u0645\u0627\u0643\u0646\u060c \u0648\u062e\u0637\u0637 \u062a\u0648\u0641\u0631 \u0648\u0642\u062a\u0643.",
+      "ونوصّلك لوكالات سياحية موثوقة بأسعار تبدأ من 1000 ريال للشخص",
     primaryCta: "\u062a\u0635\u0641\u062d \u0627\u0644\u0623\u062f\u0644\u0629",
     secondaryCta: "تواصل مع وكالات السفر",
   },
@@ -95,7 +95,7 @@ export default function Hero({ lang }: HeroProps) {
         {/* CTA Buttons */}
         <div className="flex flex-col sm:flex-row items-center justify-center gap-3.5 w-full sm:w-auto">
           <a
-            href="#"
+            href="#products"
             className="w-full sm:w-auto inline-flex items-center justify-center px-8 py-3.5 bg-white text-zinc-900 text-sm font-semibold rounded-full shadow-[0_0_20px_rgba(255,255,255,0.08),0_2px_8px_rgba(0,0,0,0.2)] hover:shadow-[0_0_30px_rgba(255,255,255,0.15),0_4px_16px_rgba(0,0,0,0.3)] hover:scale-[1.02] active:scale-[0.98] transition-all duration-200"
           >
             {t.primaryCta}
