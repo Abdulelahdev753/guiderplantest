@@ -29,7 +29,7 @@ const copyright = {
 
 const commercialReg = {
   en: "CR: 7053618372",
-  ar: "السجل التجاري: ‭7053618372‬",
+  ar: "\u0627\u0644\u0633\u062C\u0644 \u0627\u0644\u062A\u062C\u0627\u0631\u064A: 7053618372",
 };
 
 export default function Footer({ lang, onHomePage = true }: Props) {
