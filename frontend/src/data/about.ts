@@ -42,10 +42,10 @@ export const valueProps: ValueProp[] = [
   },
   {
     icon: "Backpack",
-    title: { en: "Built for Real Travelers", ar: "مصمم للمسافرين الحقيقيين" },
+    title: { en: "Ready Itinerary with a Full Trip Guide", ar: "خط سير جاهز مع دليل كامل للرحلة" },
     description: {
-      en: "No fluff, no ads — just actionable travel plans you can trust.",
-      ar: "بدون حشو، بدون إعلانات — فقط خطط سفر عملية يمكنك الوثوق بها.",
+      en: "Every day is planned with a clear route so you make the most of your time.",
+      ar: "كل يوم مرتب لك بمسار واضح عشان تستفيد من وقتك.",
     },
   },
 ];
