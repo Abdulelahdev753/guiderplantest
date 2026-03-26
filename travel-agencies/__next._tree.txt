@@ -1,0 +1,7 @@
+:HL["/guiderplantest/_next/static/chunks/078ad7f4ecfb3214.css","style"]
+:HL["/guiderplantest/_next/static/media/797e433ab948586e-s.p.dbea232f.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/guiderplantest/_next/static/media/9ff27b8a0a8f3dc0-s.p.9cb3a3e2.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/guiderplantest/_next/static/media/caa3a2e1cccd8315-s.p.853070df.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/guiderplantest/_next/static/media/d41831e24743a3c1-s.p.ae65d18e.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/guiderplantest/_next/static/chunks/6b9192e196dc4bb5.css","style"]
+0:{"buildId":"Qtgmp0hoqmm2vNZ_XY1gz","tree":{"name":"","paramType":null,"paramKey":"","hasRuntimePrefetch":false,"slots":{"children":{"name":"travel-agencies","paramType":null,"paramKey":"travel-agencies","hasRuntimePrefetch":false,"slots":{"children":{"name":"__PAGE__","paramType":null,"paramKey":"__PAGE__","hasRuntimePrefetch":false,"slots":null,"isRootLayout":false}},"isRootLayout":false}},"isRootLayout":true},"staleTime":300}
