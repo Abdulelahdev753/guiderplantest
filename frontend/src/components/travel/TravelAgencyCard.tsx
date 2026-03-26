@@ -96,7 +96,7 @@ export default function TravelAgencyCard({ agency, lang }: TravelAgencyCardProps
 
   return (
     <div
-      className={`rounded-2xl bg-white/[0.04] border border-white/[0.08] backdrop-blur-xl transition-all duration-300 hover:border-white/[0.15] hover:bg-white/[0.06] ${
+      className={`rounded-2xl bg-white/[0.04] border border-white/[0.08] backdrop-blur-xl transition-[border-color,box-shadow] duration-300 hover:border-white/[0.15] hover:bg-white/[0.06] ${
         expanded ? "shadow-lg shadow-black/20 border-white/[0.12]" : ""
       }`}
     >
@@ -114,11 +114,9 @@ export default function TravelAgencyCard({ agency, lang }: TravelAgencyCardProps
               <h3 className={`text-lg font-semibold text-white ${arFont}`}>
                 {agency.name[lang]}
               </h3>
-              {!expanded && (
-                <span className={`inline-flex items-center rounded-full bg-orange-500/10 border border-orange-500/20 px-3 py-1 text-xs font-medium text-orange-400 shrink-0 ${arFont}`}>
-                  {lang === "ar" ? "أرخص الأسعار" : "Cheapest Prices"}
-                </span>
-              )}
+              <span className={`inline-flex items-center rounded-full bg-orange-500/10 border border-orange-500/20 px-3 py-1 text-xs font-medium text-orange-400 shrink-0 transition-[opacity,transform] duration-300 ${expanded ? "opacity-0 scale-95 pointer-events-none" : "opacity-100 scale-100"} ${arFont}`}>
+                {lang === "ar" ? "أرخص الأسعار" : "Cheapest Prices"}
+              </span>
             </div>
             <p className={`text-sm text-white/40 leading-relaxed mt-1 ${arFont}`}>
               {agency.description[lang]}
@@ -148,17 +146,23 @@ export default function TravelAgencyCard({ agency, lang }: TravelAgencyCardProps
             )}
           </div>
         </div>
-        {!expanded && (
-          <div className="flex justify-center mt-4">
-            <Button
-              size="default"
-              className="bg-orange-500 hover:bg-orange-600 text-white rounded-full px-8 py-2.5 text-sm"
-              onClick={() => setExpanded(true)}
-            >
-              {labels.book[lang]}
-            </Button>
+        <div
+          className="grid transition-[grid-template-rows,opacity] duration-300 ease-in-out"
+          style={{ gridTemplateRows: expanded ? "0fr" : "1fr", opacity: expanded ? 0 : 1 }}
+        >
+          <div className="overflow-hidden">
+            <div className="flex justify-center mt-4">
+              <Button
+                size="default"
+                tabIndex={expanded ? -1 : 0}
+                className="bg-orange-500 hover:bg-orange-600 text-white rounded-full px-8 py-2.5 text-sm"
+                onClick={() => setExpanded(true)}
+              >
+                {labels.book[lang]}
+              </Button>
+            </div>
           </div>
-        )}
+        </div>
       </div>
 
       {/* Expandable form region */}
