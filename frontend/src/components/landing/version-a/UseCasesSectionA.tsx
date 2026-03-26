@@ -3,12 +3,12 @@
 import type { Lang } from "@/types/lang";
 import { useCases } from "@/data/useCases";
 import {
-  Calendar,
   Compass,
-  Heart,
-  Users,
-  ShoppingBag,
-  UtensilsCrossed,
+  Clock,
+  Wallet,
+  CalendarCheck,
+  ShieldCheck,
+  TreePalm,
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 
@@ -17,12 +17,12 @@ interface Props {
 }
 
 const iconMap: Record<string, LucideIcon> = {
-  Calendar,
   Compass,
-  Heart,
-  Users,
-  ShoppingBag,
-  UtensilsCrossed,
+  Clock,
+  Wallet,
+  CalendarCheck,
+  ShieldCheck,
+  TreePalm,
 };
 
 const sectionTitle = {

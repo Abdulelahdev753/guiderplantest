@@ -115,13 +115,9 @@ export default function TravelAgencyCard({ agency, lang }: TravelAgencyCardProps
                 {agency.name[lang]}
               </h3>
               {!expanded && (
-                <Button
-                  size="sm"
-                  className="bg-orange-500 hover:bg-orange-600 text-white rounded-full px-5 shrink-0"
-                  onClick={() => setExpanded(true)}
-                >
-                  {labels.book[lang]}
-                </Button>
+                <span className={`inline-flex items-center rounded-full bg-orange-500/10 border border-orange-500/20 px-3 py-1 text-xs font-medium text-orange-400 shrink-0 ${arFont}`}>
+                  {lang === "ar" ? "أرخص الأسعار" : "Cheapest Prices"}
+                </span>
               )}
             </div>
             <p className={`text-sm text-white/40 leading-relaxed mt-1 ${arFont}`}>
@@ -152,6 +148,17 @@ export default function TravelAgencyCard({ agency, lang }: TravelAgencyCardProps
             )}
           </div>
         </div>
+        {!expanded && (
+          <div className="flex justify-center mt-4">
+            <Button
+              size="default"
+              className="bg-orange-500 hover:bg-orange-600 text-white rounded-full px-8 py-2.5 text-sm"
+              onClick={() => setExpanded(true)}
+            >
+              {labels.book[lang]}
+            </Button>
+          </div>
+        )}
       </div>
 
       {/* Expandable form region */}
