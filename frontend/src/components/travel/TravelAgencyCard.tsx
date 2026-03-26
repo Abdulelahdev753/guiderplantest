@@ -147,7 +147,7 @@ export default function TravelAgencyCard({ agency, lang }: TravelAgencyCardProps
           </div>
         </div>
         <div
-          className="grid transition-[grid-template-rows,opacity] duration-300 ease-in-out"
+          className="grid transition-[grid-template-rows,opacity] duration-300 ease-in-out will-change-[grid-template-rows,opacity]"
           style={{ gridTemplateRows: expanded ? "0fr" : "1fr", opacity: expanded ? 0 : 1 }}
         >
           <div className="overflow-hidden">
@@ -167,12 +167,16 @@ export default function TravelAgencyCard({ agency, lang }: TravelAgencyCardProps
 
       {/* Expandable form region */}
       <div
-        className="grid transition-[grid-template-rows] duration-300 ease-in-out"
+        className="grid transition-[grid-template-rows] duration-300 ease-in-out will-change-[grid-template-rows]"
         style={{ gridTemplateRows: expanded ? "1fr" : "0fr" }}
       >
         <div className="overflow-hidden">
-          <div className="border-t border-white/[0.06] mx-6" />
-          <div className="px-6 pb-6 pt-5">
+          <div
+            className={`border-t border-white/[0.06] mx-6 transition-opacity duration-200 ${expanded ? "opacity-100" : "opacity-0"}`}
+          />
+          <div
+            className={`px-6 pb-6 pt-5 transition-opacity duration-200 ${expanded ? "opacity-100 delay-100" : "opacity-0"}`}
+          >
             {submitted ? (
               /* Success state */
               <div className="text-center py-6">
