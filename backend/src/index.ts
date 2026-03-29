@@ -3,7 +3,8 @@ import crypto from "crypto";
 import express, { type Request, type Response } from "express";
 import cors from "cors";
 import { supabase } from "./supabase.js";
-import { getPdfFilename, SUPABASE_BUCKET } from "./product-map.js";
+import { resend } from "./resend.js";
+import { getPdfFilename, getStreampayProductId, SUPABASE_BUCKET } from "./product-map.js";
 
 const app = express();
 const PORT = 5001;
@@ -11,7 +12,6 @@ const PORT = 5001;
 const STREAMPAY_API_URL =
   "https://stream-app-service.streampay.sa/api/v2/payment_links";
 const STREAMPAY_X_API_KEY = process.env.STREAMPAY_X_API_KEY!;
-const STREAMPAY_PRODUCT_ID = process.env.STREAMPAY_PRODUCT_ID!;
 const STREAMPAY_WEBHOOK_PASSWORD = process.env.STREAMPAY_WEBHOOK_PASSWORD!;
 const FRONTEND_URL = process.env.FRONTEND_URL || "http://localhost:3000";
 
@@ -84,6 +84,14 @@ app.post("/api/payment/create-link", async (req: Request, res: Response) => {
       return;
     }
 
+    // Resolve the correct StreamPay product ID for this product
+    const streampayProductId = getStreampayProductId(productId);
+    if (!streampayProductId) {
+      console.error("No StreamPay product ID configured for:", productId);
+      res.status(500).json({ error: "Payment configuration error" });
+      return;
+    }
+
     // Create StreamPay payment link
     const response = await fetch(STREAMPAY_API_URL, {
       method: "POST",
@@ -93,7 +101,7 @@ app.post("/api/payment/create-link", async (req: Request, res: Response) => {
       },
       body: JSON.stringify({
         name: "GuiderPlan Travel Guide",
-        items: [{ product_id: STREAMPAY_PRODUCT_ID }],
+        items: [{ product_id: streampayProductId }],
       }),
     });
 
@@ -278,6 +286,131 @@ app.get("/api/download", async (req: Request, res: Response) => {
   );
   res.setHeader("Content-Length", buffer.length);
   res.send(buffer);
+});
+
+// Travel agency booking request
+const BOOKING_NOTIFICATION_EMAIL = "Gaith.salama@gmail.com";
+
+app.post("/api/booking/request", async (req: Request, res: Response) => {
+  try {
+    const { agencyName, agencyEmail, clientName, clientPhone, days, details } = req.body;
+
+    // --- Validation ---
+    if (!agencyName || typeof agencyName !== "string") {
+      res.status(400).json({ error: "agencyName is required" });
+      return;
+    }
+    if (!agencyEmail || typeof agencyEmail !== "string" || !agencyEmail.includes("@")) {
+      res.status(400).json({ error: "Valid agencyEmail is required" });
+      return;
+    }
+    if (!clientName || typeof clientName !== "string" || clientName.trim().length === 0) {
+      res.status(400).json({ error: "clientName is required" });
+      return;
+    }
+    if (!clientPhone || typeof clientPhone !== "string") {
+      res.status(400).json({ error: "clientPhone is required" });
+      return;
+    }
+    if (!days || typeof days !== "number" || days < 1 || days > 30) {
+      res.status(400).json({ error: "days must be a number between 1 and 30" });
+      return;
+    }
+    const sanitizedDetails = typeof details === "string" ? details.trim() : "";
+
+    // --- Generate unique 12-digit request ID ---
+    let requestOrderId: string;
+    while (true) {
+      requestOrderId = Array.from({ length: 12 }, () =>
+        Math.floor(Math.random() * 10)
+      ).join("");
+      const { data: existing } = await supabase
+        .from("travel_Agencies")
+        .select("id")
+        .eq("request_order_id", requestOrderId)
+        .single();
+      if (!existing) break;
+    }
+
+    // --- Send email via Resend ---
+    const { error: emailError } = await resend.emails.send({
+      from: "GuiderPlan <noreply@guiderplan.com>",
+      to: [BOOKING_NOTIFICATION_EMAIL],
+      subject: `New Travel Booking Request - #${requestOrderId}`,
+      html: `
+        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
+          <h2 style="color: #f97316; border-bottom: 2px solid #f97316; padding-bottom: 10px;">
+            New Travel Booking Request
+          </h2>
+          <table style="width: 100%; border-collapse: collapse; margin-top: 16px;">
+            <tr style="border-bottom: 1px solid #e5e7eb;">
+              <td style="padding: 12px 8px; font-weight: bold; color: #374151; width: 40%;">Request ID</td>
+              <td style="padding: 12px 8px; color: #111827; font-family: monospace; font-size: 16px;">#${requestOrderId}</td>
+            </tr>
+            <tr style="border-bottom: 1px solid #e5e7eb; background: #f9fafb;">
+              <td style="padding: 12px 8px; font-weight: bold; color: #374151;">Travel Agency</td>
+              <td style="padding: 12px 8px; color: #111827;">${agencyName.trim()}</td>
+            </tr>
+            <tr style="border-bottom: 1px solid #e5e7eb;">
+              <td style="padding: 12px 8px; font-weight: bold; color: #374151;">Agency Email</td>
+              <td style="padding: 12px 8px; color: #111827;">${agencyEmail.trim()}</td>
+            </tr>
+            <tr style="border-bottom: 1px solid #e5e7eb; background: #f9fafb;">
+              <td style="padding: 12px 8px; font-weight: bold; color: #374151;">Client Name</td>
+              <td style="padding: 12px 8px; color: #111827;">${clientName.trim()}</td>
+            </tr>
+            <tr style="border-bottom: 1px solid #e5e7eb;">
+              <td style="padding: 12px 8px; font-weight: bold; color: #374151;">Client Phone</td>
+              <td style="padding: 12px 8px; color: #111827;">${clientPhone.trim()}</td>
+            </tr>
+            <tr style="border-bottom: 1px solid #e5e7eb; background: #f9fafb;">
+              <td style="padding: 12px 8px; font-weight: bold; color: #374151;">Number of Days</td>
+              <td style="padding: 12px 8px; color: #111827;">${days}</td>
+            </tr>
+            <tr>
+              <td style="padding: 12px 8px; font-weight: bold; color: #374151; vertical-align: top;">Additional Details</td>
+              <td style="padding: 12px 8px; color: #111827;">${sanitizedDetails || "None"}</td>
+            </tr>
+          </table>
+          <p style="margin-top: 24px; font-size: 12px; color: #9ca3af;">
+            This is an automated notification from GuiderPlan.
+          </p>
+        </div>
+      `,
+      text: `New Travel Booking Request\n\nRequest ID: #${requestOrderId}\nTravel Agency: ${agencyName.trim()}\nAgency Email: ${agencyEmail.trim()}\nClient Name: ${clientName.trim()}\nClient Phone: ${clientPhone.trim()}\nNumber of Days: ${days}\nAdditional Details: ${sanitizedDetails || "None"}`,
+    });
+
+    if (emailError) {
+      console.error("Email send error:", emailError);
+      res.status(500).json({ error: "Failed to send booking notification" });
+      return;
+    }
+
+    // --- Insert into Supabase ---
+    const { error: dbError } = await supabase
+      .from("travel_Agencies")
+      .insert({
+        travel_agency_name: agencyName.trim(),
+        travel_agency_email: agencyEmail.trim(),
+        request_order_id: requestOrderId,
+        client_name: clientName.trim(),
+        client_phone_number: clientPhone.trim(),
+        number_of_days: days,
+        additional_details: sanitizedDetails,
+      });
+
+    if (dbError) {
+      console.error("DB insert error:", dbError);
+      res.status(500).json({ error: "Failed to save booking request" });
+      return;
+    }
+
+    console.log("Booking request created:", requestOrderId);
+    res.json({ success: true, requestId: requestOrderId });
+  } catch (err) {
+    console.error("Booking request failed:", err);
+    res.status(500).json({ error: "Internal server error" });
+  }
 });
 
 app.listen(PORT, () => {

@@ -12,6 +12,7 @@ export interface TravelAgency {
   description: { en: string; ar: string };
   website?: string;
   phone?: string;
+  email?: string;
 }
 
 export const countries: Country[] = [
@@ -32,8 +33,9 @@ export const travelAgencies: TravelAgency[] = [
     countryId: "georgia",
     name: { en: "Georgia Adventures", ar: "مغامرات جورجيا" },
     description: {
-      en: "Tailored tours across Tbilisi, Kazbegi, and the wine region.",
-      ar: "جولات مخصصة عبر تبليسي وكازبيجي ومنطقة النبيذ.",
+      en: "The best agency for price and quality in Georgia — offering a complete trip at a competitive price including accommodation, private driver, airport pickup, daily trips, internet, and breakfast.",
+      ar: "افضل مكتب من ناحية سعر وجودة في جورجيا يوفر لك رحلة متكاملة بسعر منافس يشمل السكن، سائق خاص، استقبال من المطار، رحلات يومية، إنترنت، وفطور.",
     },
+    email: "Gaith.salama@gmail.com",
   },
 ];

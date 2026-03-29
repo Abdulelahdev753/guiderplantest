@@ -41,14 +41,14 @@ export const products: Product[] = [
     price: "34.99 SAR",
   },
   {
-    id: "budapest",
+    id: "economy-package",
     flag: "🇭🇺",
-    name: { en: "Budapest", ar: "بودابست" },
+    name: { en: "The Economy Package", ar: "الباقة الاقتصادية" },
     tagline: {
-      en: "Thermal baths, grand architecture, and vibrant ruin bars.",
-      ar: "حمامات حرارية، عمارة فخمة، وحانات الأطلال النابضة بالحياة.",
+      en: "I traveled Budapest and Prague on a 1000 SAR ticket — full details of my budget trip (flights, trains, events, and transfers). How to live the experience for less.",
+      ar: "سافرت بودابست وبراغ وتذكرتي كانت بـ 1000 ريال أقولك تفاصيل رحلتي الاقتصادية كاملة (طيران، قطارات ،فعاليات، وتنقلات) كيف تعيش التجربة بأقل تكلفة",
     },
-    price: "34.99 SAR",
+    price: "39.99 SAR",
   },
   {
     id: "prague",

@@ -71,6 +71,8 @@ function DownloadContent() {
     barcelona: "Barcelona",
     amsterdam: "Amsterdam",
     "north-italy": "North Italy",
+    prague: "Prague",
+    "economy-package": "The Economy Package",
   };
 
   return (

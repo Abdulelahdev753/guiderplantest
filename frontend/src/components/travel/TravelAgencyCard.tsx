@@ -42,6 +42,14 @@ const labels = {
     ar: "ستتواصل معك الوكالة قريباً.",
   },
   done: { en: "Done", ar: "تم" },
+  errorGeneric: {
+    en: "Something went wrong. Please try again.",
+    ar: "حدث خطأ. يرجى المحاولة مرة أخرى.",
+  },
+  requestIdLabel: {
+    en: "Your request ID",
+    ar: "رقم طلبك",
+  },
 };
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5001";
@@ -59,6 +67,8 @@ export default function TravelAgencyCard({ agency, lang }: TravelAgencyCardProps
   const [details, setDetails] = useState("");
   const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [error, setError] = useState("");
+  const [requestId, setRequestId] = useState("");
 
   const isAr = lang === "ar";
   const arFont = isAr ? "font-[family-name:var(--font-cairo)]" : "";
@@ -77,6 +87,8 @@ export default function TravelAgencyCard({ agency, lang }: TravelAgencyCardProps
       setDays(3);
       setDetails("");
       setSubmitted(false);
+      setError("");
+      setRequestId("");
     }, 150);
   }
 
@@ -84,13 +96,15 @@ export default function TravelAgencyCard({ agency, lang }: TravelAgencyCardProps
     e.preventDefault();
     if (submitting) return;
     setSubmitting(true);
+    setError("");
 
     try {
       const res = await fetch(`${API_URL}/api/booking/request`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          agencyId: agency.id,
+          agencyName: agency.name.en,
+          agencyEmail: agency.email || "",
           clientName: name.trim(),
           clientPhone: phone.trim(),
           days,
@@ -98,10 +112,16 @@ export default function TravelAgencyCard({ agency, lang }: TravelAgencyCardProps
         }),
       });
 
-      if (!res.ok) throw new Error("Failed to submit booking request");
+      if (!res.ok) {
+        const data = await res.json().catch(() => null);
+        throw new Error(data?.error || "Failed to submit booking request");
+      }
+
+      const data = await res.json();
+      setRequestId(data.requestId || "");
       setSubmitted(true);
     } catch {
-      setSubmitted(true);
+      setError(labels.errorGeneric[lang]);
     } finally {
       setSubmitting(false);
     }
@@ -190,9 +210,14 @@ export default function TravelAgencyCard({ agency, lang }: TravelAgencyCardProps
               <p className={`text-white font-medium mb-1 ${arFont}`}>
                 {labels.success[lang]}
               </p>
-              <p className={`text-sm text-white/40 mb-5 ${arFont}`}>
+              <p className={`text-sm text-white/40 mb-2 ${arFont}`}>
                 {labels.successDetail[lang]}
               </p>
+              {requestId && (
+                <p className={`text-sm text-white/50 mb-5 ${arFont}`}>
+                  {labels.requestIdLabel[lang]}: <span className="font-mono text-orange-400">{requestId}</span>
+                </p>
+              )}
               <Button
                 variant="ghost"
                 className="text-white/50 hover:text-white rounded-full px-6"
@@ -271,6 +296,13 @@ export default function TravelAgencyCard({ agency, lang }: TravelAgencyCardProps
                   className="w-full rounded-lg bg-white/[0.06] border border-white/[0.1] px-4 py-2.5 text-white placeholder:text-white/30 focus:outline-none focus:border-orange-500/50 transition-colors resize-none"
                 />
               </div>
+
+              {/* Error message */}
+              {error && (
+                <div className="rounded-lg bg-red-500/10 border border-red-500/20 px-4 py-3 text-sm text-red-400">
+                  {error}
+                </div>
+              )}
 
               {/* Action buttons */}
               <div className="flex items-center gap-3 pt-1">

@@ -24,7 +24,7 @@ const AVAILABLE_PRODUCTS = new Set([
   "barcelona",
   "amsterdam",
   "north-italy",
-  "budapest",
+  "economy-package",
   "prague",
 ]);
 
