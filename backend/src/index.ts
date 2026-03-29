@@ -23,10 +23,6 @@ app.use(
 );
 app.use(express.json());
 
-app.get("/", (_req: Request, res: Response) => {
-  res.json({ message: "Backend server is running" });
-});
-
 app.get("/api/health", (_req: Request, res: Response) => {
   res.json({ status: "ok" });
 });
