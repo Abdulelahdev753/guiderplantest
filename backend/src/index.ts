@@ -412,7 +412,19 @@ app.post("/api/booking/request", async (req: Request, res: Response) => {
 
 // Serve static frontend files
 const frontendPath = path.join(__dirname, "../../frontend/out");
-app.use(express.static(frontendPath, { extensions: ["html"] }));
+
+// Resolve clean URLs to Next.js static export .html files (e.g. /download -> download.html)
+app.use((req: Request, res: Response, next) => {
+  if (req.path.startsWith("/api") || path.extname(req.path)) {
+    return next();
+  }
+  const htmlFile = path.join(frontendPath, req.path.replace(/\/$/, "") + ".html");
+  res.sendFile(htmlFile, (err) => {
+    if (err) next();
+  });
+});
+
+app.use(express.static(frontendPath));
 
 // Catch-all: serve index.html for client-side routes (skip /api paths)
 app.get("/{*path}", (req: Request, res: Response) => {
