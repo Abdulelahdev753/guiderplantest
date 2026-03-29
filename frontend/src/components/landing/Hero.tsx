@@ -115,7 +115,7 @@ export default function Hero({ lang }: HeroProps) {
           <div className="border-t border-white/[0.08]" />
           <div className="flex justify-center mt-5">
             <a
-              href="https://wa.me/96658193980"
+              href="https://wa.me/966581939806"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 px-5 py-2.5 text-xs text-white/80 hover:text-white rounded-full border border-white/[0.12] hover:border-white/[0.25] bg-white/[0.04] hover:bg-white/[0.08] active:scale-[0.98] transition-all duration-200"

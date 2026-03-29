@@ -107,7 +107,7 @@ export default function Footer({ lang, onHomePage = true }: Props) {
             <div className="flex items-center gap-2">
               {/* WhatsApp */}
               <a
-                href="https://wa.me/96658193980"
+                href="https://wa.me/966581939806"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="WhatsApp"
