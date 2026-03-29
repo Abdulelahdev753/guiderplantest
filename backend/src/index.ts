@@ -419,7 +419,7 @@ const frontendPath = path.join(__dirname, "../../frontend/out");
 app.use(express.static(frontendPath));
 
 // Catch-all: serve index.html for client-side routes (skip /api paths)
-app.get("*", (req: Request, res: Response) => {
+app.get("/{*path}", (req: Request, res: Response) => {
   if (!req.path.startsWith("/api")) {
     res.sendFile(path.join(frontendPath, "index.html"));
   }
