@@ -412,7 +412,7 @@ app.post("/api/booking/request", async (req: Request, res: Response) => {
 
 // Serve static frontend files
 const frontendPath = path.join(__dirname, "../../frontend/out");
-app.use(express.static(frontendPath));
+app.use(express.static(frontendPath, { extensions: ["html"] }));
 
 // Catch-all: serve index.html for client-side routes (skip /api paths)
 app.get("/{*path}", (req: Request, res: Response) => {
