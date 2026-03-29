@@ -190,7 +190,7 @@ export default function TravelAgencyCard({ agency, lang }: TravelAgencyCardProps
 
       {/* Booking form dialog */}
       <Dialog open={open} onOpenChange={(o) => !o && closeForm()}>
-        <DialogContent keepMounted className="bg-neutral-950 border-white/[0.08] text-white max-w-md will-change-[transform,opacity] [-webkit-backface-visibility:hidden]">
+        <DialogContent keepMounted className="bg-neutral-950 border-white/[0.08] text-white max-w-md">
           <DialogHeader>
             <DialogTitle className={`text-xl font-bold ${arFont}`}>
               {initial} {agency.name[lang]}
