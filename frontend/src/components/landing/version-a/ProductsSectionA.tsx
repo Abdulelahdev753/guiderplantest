@@ -62,7 +62,7 @@ const formLabels = {
   submitting: { en: "Processing...", ar: "جارٍ المعالجة..." },
 };
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5001";
+const API_URL = process.env.NEXT_PUBLIC_API_URL || "";
 
 export default function ProductsSectionA({ lang }: Props) {
   const [selectedProduct, setSelectedProduct] = useState<string | null>(null);

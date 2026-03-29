@@ -1,5 +1,6 @@
 import "dotenv/config";
 import crypto from "crypto";
+import path from "path";
 import express, { type Request, type Response } from "express";
 import cors from "cors";
 import { supabase } from "./supabase.js";
@@ -7,17 +8,17 @@ import { resend } from "./resend.js";
 import { getPdfFilename, getStreampayProductId, SUPABASE_BUCKET } from "./product-map.js";
 
 const app = express();
-const PORT = 5001;
+const PORT = process.env.PORT ? parseInt(process.env.PORT) : 5001;
 
 const STREAMPAY_API_URL =
   "https://stream-app-service.streampay.sa/api/v2/payment_links";
 const STREAMPAY_X_API_KEY = process.env.STREAMPAY_X_API_KEY!;
 const STREAMPAY_WEBHOOK_PASSWORD = process.env.STREAMPAY_WEBHOOK_PASSWORD!;
-const FRONTEND_URL = process.env.FRONTEND_URL || "http://localhost:3000";
+const FRONTEND_URL = process.env.FRONTEND_URL || "https://guiderplan.com";
 
 app.use(
   cors({
-    origin: ["http://localhost:3000", "https://guiderplan.com"],
+    origin: ["http://localhost:3000", "https://guiderplan.com", "https://www.guiderplan.com"],
   })
 );
 app.use(express.json());
@@ -112,7 +113,7 @@ app.post("/api/payment/create-link", async (req: Request, res: Response) => {
       return;
     }
 
-    const data = await response.json();
+    const data = (await response.json()) as { id: string; url: string };
     console.log("StreamPay payment link created:", data);
 
     // Store the StreamPay link ID so webhook can correlate
@@ -197,7 +198,7 @@ app.get("/api/download/status", async (req: Request, res: Response) => {
         { headers: { "X-Api-Key": STREAMPAY_X_API_KEY } }
       );
       if (spRes.ok) {
-        const spData = await spRes.json();
+        const spData = (await spRes.json()) as { amount_collected_in_smallest_unit: number };
         if (spData.amount_collected_in_smallest_unit > 0) {
           // Payment was collected -- mark as completed
           await supabase
@@ -410,6 +411,17 @@ app.post("/api/booking/request", async (req: Request, res: Response) => {
   } catch (err) {
     console.error("Booking request failed:", err);
     res.status(500).json({ error: "Internal server error" });
+  }
+});
+
+// Serve static frontend files
+const frontendPath = path.join(__dirname, "../../frontend/out");
+app.use(express.static(frontendPath));
+
+// Catch-all: serve index.html for client-side routes (skip /api paths)
+app.get("*", (req: Request, res: Response) => {
+  if (!req.path.startsWith("/api")) {
+    res.sendFile(path.join(frontendPath, "index.html"));
   }
 });
 
