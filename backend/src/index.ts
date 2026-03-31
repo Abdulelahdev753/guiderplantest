@@ -99,6 +99,7 @@ app.post("/api/payment/create-link", async (req: Request, res: Response) => {
       body: JSON.stringify({
         name: "GuiderPlan Travel Guide",
         items: [{ product_id: streampayProductId }],
+        success_redirect_url: `${FRONTEND_URL}/download?token=${token}`,
       }),
     });
 

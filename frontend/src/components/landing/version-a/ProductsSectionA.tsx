@@ -100,9 +100,8 @@ export default function ProductsSectionA({ lang }: Props) {
       if (!res.ok) throw new Error("Failed to create payment link");
 
       const data = await res.json();
-      if (data.url && data.token) {
-        window.open(data.url, "_blank");
-        window.location.href = `/download?token=${data.token}`;
+      if (data.url) {
+        window.location.href = data.url;
       }
     } catch (err) {
       console.error("Payment error:", err);
