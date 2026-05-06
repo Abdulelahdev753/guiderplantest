@@ -17,13 +17,11 @@ const navLinks = {
   en: [
     { label: "Products", href: "#products" },
     { label: "Use Cases", href: "#use-cases" },
-    { label: "Travel Agencies", href: `${basePath}/travel-agencies` },
     { label: "About Us", href: "#about" },
   ],
   ar: [
     { label: "المنتجات", href: "#products" },
     { label: "حالات الاستخدام", href: "#use-cases" },
-    { label: "وكالات السفر", href: `${basePath}/travel-agencies` },
     { label: "من نحن", href: "#about" },
   ],
 };

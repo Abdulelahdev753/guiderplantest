@@ -13,7 +13,6 @@ interface Props {
 const navLinks = [
   { en: "Products", ar: "المنتجات", href: "#products" },
   { en: "Use Cases", ar: "حالات الاستخدام", href: "#use-cases" },
-  { en: "Travel Agencies", ar: "وكالات السفر", href: `${basePath}/travel-agencies` },
   { en: "About Us", ar: "من نحن", href: "#about" },
 ];
 

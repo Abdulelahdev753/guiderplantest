@@ -411,8 +411,116 @@ app.post("/api/booking/request", async (req: Request, res: Response) => {
   }
 });
 
+// Travel agency contact form (hero modal)
+const AGENCY_CONTACT_EMAIL = "gaith.salama@gmail.com";
+
+const DESTINATION_LABELS: Record<string, { en: string; ar: string }> = {
+  all: { en: "Any destination", ar: "أي وجهة" },
+  asia: { en: "Asia", ar: "آسيا" },
+  europe: { en: "Europe", ar: "أوروبا" },
+  cruises: { en: "Cruises", ar: "رحلات بحرية" },
+  honeymoon: { en: "Honeymoon", ar: "شهر عسل" },
+  arab: { en: "Arab World", ar: "الوطن العربي" },
+};
+
+function escapeHtml(s: string): string {
+  return s
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;");
+}
+
+app.post("/api/agency-contact", async (req: Request, res: Response) => {
+  try {
+    const { name, phone, destination, message } = req.body;
+
+    if (!name || typeof name !== "string" || name.trim().length === 0) {
+      res.status(400).json({ error: "name is required" });
+      return;
+    }
+    if (!phone || typeof phone !== "string" || phone.trim().length === 0) {
+      res.status(400).json({ error: "phone is required" });
+      return;
+    }
+    if (
+      !destination ||
+      typeof destination !== "string" ||
+      !DESTINATION_LABELS[destination]
+    ) {
+      res.status(400).json({ error: "Valid destination is required" });
+      return;
+    }
+    const sanitizedMessage = typeof message === "string" ? message.trim() : "";
+
+    const cleanName = escapeHtml(name.trim());
+    const cleanPhone = escapeHtml(phone.trim());
+    const cleanDestEn = escapeHtml(DESTINATION_LABELS[destination].en);
+    const cleanDestAr = DESTINATION_LABELS[destination].ar;
+    const cleanMessage = sanitizedMessage
+      ? escapeHtml(sanitizedMessage).replace(/\n/g, "<br>")
+      : "—";
+
+    const { error: emailError } = await resend.emails.send({
+      from: "GuiderPlan <noreply@guiderplan.com>",
+      to: [AGENCY_CONTACT_EMAIL],
+      subject: `New Travel Agency Contact Request — ${DESTINATION_LABELS[destination].en}`,
+      html: `
+        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
+          <h2 style="color: #f97316; border-bottom: 2px solid #f97316; padding-bottom: 10px;">
+            New Travel Agency Contact Request
+          </h2>
+          <table style="width: 100%; border-collapse: collapse; margin-top: 16px;">
+            <tr style="border-bottom: 1px solid #e5e7eb; background: #f9fafb;">
+              <td style="padding: 12px 8px; font-weight: bold; color: #374151; width: 40%;">Full Name</td>
+              <td style="padding: 12px 8px; color: #111827;">${cleanName}</td>
+            </tr>
+            <tr style="border-bottom: 1px solid #e5e7eb;">
+              <td style="padding: 12px 8px; font-weight: bold; color: #374151;">Phone Number</td>
+              <td style="padding: 12px 8px; color: #111827;" dir="ltr">${cleanPhone}</td>
+            </tr>
+            <tr style="border-bottom: 1px solid #e5e7eb; background: #f9fafb;">
+              <td style="padding: 12px 8px; font-weight: bold; color: #374151;">Preferred Destination</td>
+              <td style="padding: 12px 8px; color: #111827;">${cleanDestEn} (${cleanDestAr})</td>
+            </tr>
+            <tr>
+              <td style="padding: 12px 8px; font-weight: bold; color: #374151; vertical-align: top;">Message</td>
+              <td style="padding: 12px 8px; color: #111827;">${cleanMessage}</td>
+            </tr>
+          </table>
+          <p style="margin-top: 24px; font-size: 12px; color: #9ca3af;">
+            Submitted via the GuiderPlan homepage modal.
+          </p>
+        </div>
+      `,
+      text: `New Travel Agency Contact Request\n\nFull Name: ${name.trim()}\nPhone Number: ${phone.trim()}\nPreferred Destination: ${DESTINATION_LABELS[destination].en} (${DESTINATION_LABELS[destination].ar})\nMessage: ${sanitizedMessage || "—"}`,
+    });
+
+    if (emailError) {
+      console.error("Agency contact email send error:", emailError);
+      res.status(500).json({ error: "Failed to send contact request" });
+      return;
+    }
+
+    console.log("Agency contact request received:", {
+      name: name.trim(),
+      destination,
+    });
+    res.json({ success: true });
+  } catch (err) {
+    console.error("Agency contact request failed:", err);
+    res.status(500).json({ error: "Internal server error" });
+  }
+});
+
 // Serve static frontend files
 const frontendPath = path.join(__dirname, "../../frontend/out");
+
+// Redirect retired /travel-agencies route to the homepage
+app.get("/travel-agencies", (_req: Request, res: Response) => {
+  res.redirect(301, "/");
+});
 
 // Resolve clean URLs to Next.js static export .html files (e.g. /download -> download.html)
 app.use((req: Request, res: Response, next) => {
