@@ -31,6 +31,16 @@ const commercialReg = {
   ar: "\u0627\u0644\u0633\u062C\u0644 \u0627\u0644\u062A\u062C\u0627\u0631\u064A: 7053618372",
 };
 
+const tourismLicense = {
+  en: "Tourism Ministry License: 73100310",
+  ar: "\u062A\u0631\u062E\u064A\u0635 \u0648\u0632\u0627\u0631\u0629 \u0627\u0644\u0633\u064A\u0627\u062D\u0629: 73100310",
+};
+
+const agencyAddress = {
+  en: "Nujoom Al-Safar Agency, Sari Branch, Al-Rawdah, Jeddah 23435",
+  ar: "\u0648\u0643\u0627\u0644\u0629 \u0646\u062C\u0648\u0645 \u0627\u0644\u0633\u0641\u0631\u060C \u0635\u0627\u0631\u064A \u0641\u0631\u0639\u064A\u060C \u0627\u0644\u0631\u0648\u0636\u0629\u060C \u062C\u062F\u0629 23435",
+};
+
 export default function Footer({ lang, onHomePage = true }: Props) {
   return (
     <footer className="relative bg-white/[0.02] border-t border-white/[0.06]">
@@ -97,6 +107,34 @@ export default function Footer({ lang, onHomePage = true }: Props) {
                 }`}
               >
                 {commercialReg[lang]}
+              </span>
+            </div>
+            <div
+              dir={lang === "ar" ? "rtl" : undefined}
+              className={`flex items-center gap-2.5 ${
+                lang === "ar" ? "justify-start" : ""
+              }`}
+            >
+              <span
+                className={`text-xs text-white/20 tracking-wide ${
+                  lang === "ar" ? "font-[family-name:var(--font-cairo)]" : ""
+                }`}
+              >
+                {tourismLicense[lang]}
+              </span>
+            </div>
+            <div
+              dir={lang === "ar" ? "rtl" : undefined}
+              className={`flex items-center gap-2.5 ${
+                lang === "ar" ? "justify-start" : ""
+              }`}
+            >
+              <span
+                className={`text-xs text-white/20 tracking-wide ${
+                  lang === "ar" ? "font-[family-name:var(--font-cairo)]" : ""
+                }`}
+              >
+                {agencyAddress[lang]}
               </span>
             </div>
           </div>

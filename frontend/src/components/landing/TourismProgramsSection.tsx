@@ -90,7 +90,7 @@ export default function TourismProgramsSection({ lang, onContactClick }: Props) 
                   <h3 className={`text-lg font-semibold text-white mb-2 ${arFont}`}>
                     {program.title[lang]}
                   </h3>
-                  <p className={`text-sm text-white/45 leading-relaxed mb-5 flex-1 ${arFont}`}>
+                  <p className={`text-sm text-white/45 leading-relaxed mb-5 flex-1 whitespace-pre-line ${arFont}`}>
                     {program.description[lang]}
                   </p>
                   <div className="flex items-center justify-between gap-3">

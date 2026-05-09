@@ -13,24 +13,24 @@ const content = {
   en: {
     announcement: "Trusted travel PDF guides",
     announcementCta: "Carefully designed",
-    headline1: "Travel Smarter",
-    headline2: "with Professional PDF Guides, All the Details",
+    headline1:
+      "Complete travel programs and global bookings at competitive prices, in partnership with Nujoom Al-Safar Travel Agency.",
     subtext:
-      "Instead of overpaying at offices, we connect you directly with trusted agencies starting from 1000 SAR per person — including: accommodation, airport pickup & drop-off, private driver, daily trips, internet, breakfast, and travel insurance.",
+      "With Nujoom Al-Safar Travel Agency, we provide complete travel packages at competitive prices, including accommodation, transfers, and trusted services for a comfortable, distinctive trip.",
     primaryCta: "Browse Guides",
-    secondaryCta: "Contact with Travel Agencies",
-    whatsappCta: "For travel consultations via WhatsApp",
+    secondaryCta: "Book your trip now",
+    whatsappCta: "Book or inquire — contact us.",
   },
   ar: {
     announcement: "أدلة سفر موثوقة",
     announcementCta: "مصممة بعناية",
-    headline1: "سافر بذكاء",
-    headline2: " مع أدلة PDF احترافية بكل التفاصيل",
+    headline1:
+      "برامج سياحية متكاملة وحجوزات عالمية بأسعار تنافسية، بالتعاون مع نجوم السفر والسياحة.",
     subtext:
-      "بدل ما تدفع زيادة على المكاتب نوصّلك مباشرة لوكالات موثوقة بأسعار تبدأ من 1000 ريال للشخص تشمل: سكن، استقبال وتوديع من المطار، سائق خاص، رحلات يومية، إنترنت، فطور، وتأمين سفر",
+      "مع وكالة نجوم السفر والسياحة، نوفر لك باقات سفر متكاملة بأسعار تنافسية تشمل السكن، والتنقلات، وخدمات موثوقة لتجربة سفر مريحة ومميزة.",
     primaryCta: "تصفح الأدلة",
-    secondaryCta: "تواصل مع وكالات السفر",
-    whatsappCta: "للاستشارات السياحيه عبر الواتساب",
+    secondaryCta: "احجز رحلتك الان",
+    whatsappCta: "للحجز و الاستفسار تواصل معنا.",
   },
 } as const;
 
@@ -85,10 +85,6 @@ export default function Hero({ lang, onOpenAgencyModal }: HeroProps) {
         {/* Headline */}
         <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-[1.08] tracking-tight mb-7">
           {t.headline1}
-          <br />
-          <span className="bg-gradient-to-r from-white via-white/90 to-white/70 bg-clip-text text-transparent">
-            {t.headline2}
-          </span>
         </h1>
 
         {/* Subtext */}
