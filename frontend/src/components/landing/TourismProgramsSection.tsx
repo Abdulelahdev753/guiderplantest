@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import type { Lang } from "@/types/lang";
 import {
   tourismCategories,
@@ -8,6 +9,8 @@ import {
 } from "@/data/tourismCategories";
 import { tourismPrograms } from "@/data/tourismPrograms";
 import { Button } from "@/components/ui/button";
+
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
 
 interface Props {
   lang: Lang;
@@ -82,9 +85,15 @@ export default function TourismProgramsSection({ lang, onContactClick }: Props) 
                 key={program.id}
                 className="group flex flex-col rounded-xl bg-white/[0.04] border border-white/[0.08] backdrop-blur-xl overflow-hidden transition-all duration-300 hover:border-white/[0.15] hover:bg-white/[0.06]"
               >
-                <div className="relative aspect-[16/10] bg-gradient-to-br from-orange-500/15 via-orange-500/5 to-transparent flex items-center justify-center">
-                  <span className="text-6xl drop-shadow-lg">{program.flag}</span>
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent pointer-events-none" />
+                <div className="relative aspect-[16/10] overflow-hidden">
+                  <Image
+                    src={`${basePath}/images/${program.image}`}
+                    alt={program.title[lang]}
+                    fill
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent pointer-events-none" />
                 </div>
                 <div className="flex flex-col flex-1 p-5">
                   <h3 className={`text-lg font-semibold text-white mb-2 ${arFont}`}>

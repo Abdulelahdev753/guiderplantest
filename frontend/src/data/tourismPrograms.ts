@@ -4,6 +4,7 @@ export interface TourismProgram {
   id: string;
   category: Exclude<TourismCategoryId, "all">;
   flag: string;
+  image: string;
   title: { en: string; ar: string };
   description: { en: string; ar: string };
   price: { en: string; ar: string };
@@ -14,6 +15,7 @@ export const tourismPrograms: TourismProgram[] = [
     id: "indonesia-11-days",
     category: "asia",
     flag: "🇮🇩",
+    image: "Indoniese.webp",
     title: { en: "Indonesia", ar: "إندونيسيا" },
     description: {
       en: "11 days across Puncak, Bali, and Jakarta ✨\nIncludes 5-star hotels, daily breakfast, private car, internet SIMs, airport pickup & drop-off, and a private-pool villa in Bali.",
@@ -25,6 +27,7 @@ export const tourismPrograms: TourismProgram[] = [
     id: "georgia-7-days",
     category: "europe",
     flag: "🇬🇪",
+    image: "georgia.webp",
     title: { en: "Georgia", ar: "جورجيا" },
     description: {
       en: "7 days between Tbilisi and Batumi 🌿\nComfortable transfers, premium hotels, daily breakfast, and tours of the most beautiful sights and nature at great prices.",
@@ -36,6 +39,7 @@ export const tourismPrograms: TourismProgram[] = [
     id: "istanbul-6-days",
     category: "europe",
     flag: "🇹🇷",
+    image: "Istanbul.webp",
     title: { en: "Istanbul", ar: "اسطنبول" },
     description: {
       en: "6 days between history and magical atmospheres ✨\nHotel stay, daily breakfast, airport pickup & drop-off, and daily sightseeing tours.",
@@ -47,6 +51,7 @@ export const tourismPrograms: TourismProgram[] = [
     id: "moscow-8-days",
     category: "europe",
     flag: "🇷🇺",
+    image: "moscow.webp",
     title: { en: "Moscow", ar: "موسكو" },
     description: {
       en: "8 days in the heart of Russia ❄️\nA calm, luxurious experience with premium hotels, daily breakfast, and airport pickup & drop-off.",
@@ -58,6 +63,7 @@ export const tourismPrograms: TourismProgram[] = [
     id: "phuket-thailand-6-days",
     category: "asia",
     flag: "🇹🇭",
+    image: "Phuket_Thailand.webp",
     title: { en: "Phuket — Thailand", ar: "بوكيت – تايلند" },
     description: {
       en: "6 days surrounded by nature and the sea 🌴\n5-star hotels, private car, internet SIMs, airport pickup & drop-off, and a private-pool villa.",
@@ -69,6 +75,7 @@ export const tourismPrograms: TourismProgram[] = [
     id: "vietnam-13-days",
     category: "asia",
     flag: "🇻🇳",
+    image: "vietnam.webp",
     title: { en: "Vietnam", ar: "فيتنام" },
     description: {
       en: "13 days across Saigon, Da Nang, Phu Quoc, and Bangkok ✨\nIncludes international and domestic flights, world-class resorts, and daily breakfast.",
@@ -80,6 +87,7 @@ export const tourismPrograms: TourismProgram[] = [
     id: "mediterranean-cruise-9-days",
     category: "cruises",
     flag: "🚢",
+    image: "Mediterranean_Cruise.webp",
     title: { en: "Mediterranean Cruise", ar: "كروز البحر الأبيض المتوسط" },
     description: {
       en: "9 days across Barcelona, Genoa, Rome, Palma de Mallorca, and more 🌊\nLuxury accommodation, sea-view cabin, and all meals included onboard.",
@@ -91,10 +99,11 @@ export const tourismPrograms: TourismProgram[] = [
     id: "saudi-cruise-8-days",
     category: "cruises",
     flag: "🇸🇦",
+    image: "saudi_cruise.webp",
     title: { en: "Saudi Cruise", ar: "كروز السعودي" },
     description: {
-      en: "Up to 30% off on selected trips ✨\n8-day cruise between Jeddah, Sharm El Sheikh, and Aqaba 🌊\nA luxurious cruise experience packed with events, activities, and unique atmospheres on board — elegance, entertainment, and complete relaxation at sea.",
-      ar: "أوروبا – خصومات تصل إلى 30% على رحلات محددة ✨\n8 أيام بحرية بين جدة، شرم الشيخ، والعقبة 🌊\nتجربة بحرية فاخرة مليانة فعاليات، أنشطة، وأجواء مختلفة على متن الكروز. فخامة، ترفيه، واسترخاء كامل على البحر.",
+      en: "AROYA Cruise – Up to 30% off on selected trips ✨\n8-day cruise between Jeddah, Sharm El Sheikh, and Aqaba 🌊\nA luxurious cruise experience packed with events, activities, and unique atmospheres on board — elegance, entertainment, and complete relaxation at sea.",
+      ar: "ارويا كروز – خصومات تصل إلى 30% على رحلات محددة ✨\n8 أيام بحرية بين جدة، شرم الشيخ، والعقبة 🌊\nتجربة بحرية فاخرة مليانة فعاليات، أنشطة، وأجواء مختلفة على متن الكروز. فخامة، ترفيه، واسترخاء كامل على البحر.",
     },
     price: { en: "From 3,719 SAR per double cabin", ar: "ابتداءً من 3,719 ريال للكابينة المزدوجة" },
   },
@@ -102,6 +111,7 @@ export const tourismPrograms: TourismProgram[] = [
     id: "austria-germany-11-days",
     category: "europe",
     flag: "🇦🇹",
+    image: "Austria_Germany.webp",
     title: { en: "Austria & Germany", ar: "النمسا وألمانيا" },
     description: {
       en: "11 days across European nature and classic cities 🌿\nA journey blending tranquility, luxury, scenic landscapes, and complete organization down to every detail.",

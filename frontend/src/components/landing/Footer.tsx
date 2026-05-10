@@ -26,11 +26,6 @@ const copyright = {
   ar: "\u00a9 2026 GuiderPlan. جميع الحقوق محفوظة.",
 };
 
-const commercialReg = {
-  en: "CR: 7053618372",
-  ar: "\u0627\u0644\u0633\u062C\u0644 \u0627\u0644\u062A\u062C\u0627\u0631\u064A: 7053618372",
-};
-
 const tourismLicense = {
   en: "Tourism Ministry License: 73100310",
   ar: "\u062A\u0631\u062E\u064A\u0635 \u0648\u0632\u0627\u0631\u0629 \u0627\u0644\u0633\u064A\u0627\u062D\u0629: 73100310",
@@ -39,6 +34,14 @@ const tourismLicense = {
 const agencyAddress = {
   en: "Nujoom Al-Safar Agency, Sari Branch, Al-Rawdah, Jeddah 23435",
   ar: "\u0648\u0643\u0627\u0644\u0629 \u0646\u062C\u0648\u0645 \u0627\u0644\u0633\u0641\u0631\u060C \u0635\u0627\u0631\u064A \u0641\u0631\u0639\u064A\u060C \u0627\u0644\u0631\u0648\u0636\u0629\u060C \u062C\u062F\u0629 23435",
+};
+
+const credit = {
+  en: { prefix: "Designed and developed by ", name: "Abdulelah Alzahrani" },
+  ar: {
+    prefix: "\u062A\u0635\u0645\u064A\u0645 \u0648\u062A\u0637\u0648\u064A\u0631: ",
+    name: "\u0639\u0628\u062F\u0627\u0644\u0625\u0644\u0647 \u0627\u0644\u0632\u0647\u0631\u0627\u0646\u064A",
+  },
 };
 
 export default function Footer({ lang, onHomePage = true }: Props) {
@@ -94,27 +97,6 @@ export default function Footer({ lang, onHomePage = true }: Props) {
                 lang === "ar" ? "justify-start" : ""
               }`}
             >
-              <Image
-                src={`${basePath}/images/MOC_Logo.svg`}
-                alt="Ministry of Commerce"
-                width={20}
-                height={20}
-                className="w-7 h-7 opacity-25"
-              />
-              <span
-                className={`text-xs text-white/20 tracking-wide ${
-                  lang === "ar" ? "font-[family-name:var(--font-cairo)]" : ""
-                }`}
-              >
-                {commercialReg[lang]}
-              </span>
-            </div>
-            <div
-              dir={lang === "ar" ? "rtl" : undefined}
-              className={`flex items-center gap-2.5 ${
-                lang === "ar" ? "justify-start" : ""
-              }`}
-            >
               <span
                 className={`text-xs text-white/20 tracking-wide ${
                   lang === "ar" ? "font-[family-name:var(--font-cairo)]" : ""
@@ -135,6 +117,28 @@ export default function Footer({ lang, onHomePage = true }: Props) {
                 }`}
               >
                 {agencyAddress[lang]}
+              </span>
+            </div>
+            <div
+              dir={lang === "ar" ? "rtl" : undefined}
+              className={`flex items-center gap-1 ${
+                lang === "ar" ? "justify-start" : ""
+              }`}
+            >
+              <span
+                className={`text-xs text-white/20 tracking-wide ${
+                  lang === "ar" ? "font-[family-name:var(--font-cairo)]" : ""
+                }`}
+              >
+                {credit[lang].prefix}
+                <a
+                  href="https://x.com/AbdulellahCoder"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-white/40 hover:text-white/80 underline-offset-2 hover:underline transition-colors"
+                >
+                  {credit[lang].name}
+                </a>
               </span>
             </div>
           </div>

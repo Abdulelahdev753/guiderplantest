@@ -16,7 +16,7 @@ const content = {
     headline1:
       "Complete travel programs and global bookings at competitive prices, in partnership with Nujoom Al-Safar Travel Agency.",
     subtext:
-      "With Nujoom Al-Safar Travel Agency, we provide complete travel packages at competitive prices, including accommodation, transfers, and trusted services for a comfortable, distinctive trip.",
+      "We arrange your trip from flights and hotels to visas and tours with ease ✈️ Our support team is with you anytime 📞",
     primaryCta: "Browse Guides",
     secondaryCta: "Book your trip now",
     whatsappCta: "Book or inquire — contact us.",
@@ -27,7 +27,7 @@ const content = {
     headline1:
       "برامج سياحية متكاملة وحجوزات عالمية بأسعار تنافسية، بالتعاون مع نجوم السفر والسياحة.",
     subtext:
-      "مع وكالة نجوم السفر والسياحة، نوفر لك باقات سفر متكاملة بأسعار تنافسية تشمل السكن، والتنقلات، وخدمات موثوقة لتجربة سفر مريحة ومميزة.",
+      "نرتب لك الرحلة من الطيران والفنادق إلى التأشيرات والرحلات السياحية بكل سهولة ✈️ ومعاك فريق دعم متواصل يساعدك بأي وقت 📞",
     primaryCta: "تصفح الأدلة",
     secondaryCta: "احجز رحلتك الان",
     whatsappCta: "للحجز و الاستفسار تواصل معنا.",
