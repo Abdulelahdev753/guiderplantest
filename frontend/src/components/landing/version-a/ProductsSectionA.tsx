@@ -60,6 +60,10 @@ const formLabels = {
   phonePlaceholder: { en: "05XXXXXXXX", ar: "05XXXXXXXX" },
   submit: { en: "Proceed to Payment", ar: "المتابعة للدفع" },
   submitting: { en: "Processing...", ar: "جارٍ المعالجة..." },
+  downloadNote: {
+    en: "NOTE: THE DOWNLOAD LINK WILL EXPIRE AFTER A WHILE, SO PLEASE DOWNLOAD THE PDF QUICKLY.",
+    ar: "تنبيه: رابط تحميل ملف PDF سينتهي صلاحيته بعد فترة، يُرجى تحميل الملف بسرعة.",
+  },
 };
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || "";
@@ -219,6 +223,14 @@ export default function ProductsSectionA({ lang }: Props) {
               {formLabels.description[lang]}
             </DialogDescription>
           </DialogHeader>
+
+          <div
+            className={`rounded-lg bg-amber-500/10 border border-amber-500/25 px-3 py-2 text-xs leading-relaxed text-amber-300 ${
+              lang === "ar" ? "font-[family-name:var(--font-cairo)] text-right" : ""
+            }`}
+          >
+            {formLabels.downloadNote[lang]}
+          </div>
 
           <form onSubmit={handleSubmit} className="space-y-4 mt-2">
             <div>
