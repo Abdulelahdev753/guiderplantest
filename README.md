@@ -130,16 +130,6 @@ npm install
 npm run dev
 ```
 
-### متغيرات البيئة المطلوبة (backend/.env)
-```env
-SUPABASE_URL=...
-SUPABASE_SERVICE_ROLE_KEY=...
-STREAMPAY_X_API_KEY=...
-STREAMPAY_WEBHOOK_PASSWORD=...
-RESEND_API_KEY=...
-FRONTEND_URL=https://guiderplan.com
-```
-
 ---
 
 ## النشر
